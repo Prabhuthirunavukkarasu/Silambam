@@ -1,0 +1,110 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">
+        <img src="../../assets/img/Silambam_icon.png" alt="Logo" style="width:40px;">
+    </a>
+    <span class="ml-auto navbar-text"><span class="tab-space">Silambam</span></span>
+    <div class="navbar-collapse collapse" id="navbarCustom">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" data-toggle="modal" (click)="openModel(true)">Add New Member</a>
+            </li>
+        </ul>
+        <span class="ml-auto navbar-text" routerLink="/login">Log out</span>
+    </div>
+</nav>
+<div class="table-responsive-md">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>S.NO</th>
+                <th>Name</th>
+                <th>Father Name</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let member of members; index as i">
+                <td>{{i + 1}}</td>
+                <td>{{member.name}}</td>
+                <td>{{member.fatherName}}</td>
+                <td>{{member.address}}</td>
+                <td>{{member.contact}}</td>
+                <td><a href=" #"><i class="fa fa-eraser" aria-hidden="true"></i></a></td>
+                <td><a (click)="deleteMember(member._id)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal" [ngStyle]="{'display': showModal ? 'block' : 'none', 'opacity': 1}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Member</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container-fluid bg-light py-3">
+                    <form id="contact-form" method="post" action="contact.php" role="form">
+                        <div class="addresss"></div>
+                        <div class="controls">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="form_name">Name </label>
+                                        <input id="form_name" type="text" name="name" class="form-control"
+                                            placeholder="Name" [(ngModel)]="member.name">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="form_email">Father Name </label>
+                                        <input id="form_email" type="text" name="fatherName" class="form-control"
+                                            placeholder="Father name" [(ngModel)]="member.fatherName">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="form_contact">Contact</label>
+                                        <input id="form_contact" type="number" name="contact" class="form-control"
+                                            placeholder="Contact number" [(ngModel)]="member.contact">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="form_address">Address </label>
+                                    <textarea id="form_address" name="address" class="form-control"
+                                        placeholder="Address" rows="4" [(ngModel)]="member.address"></textarea>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="openModel(false)">Cancel</button>
+                <button type="button" class="btn btn-success" (click)="createNewMember()">Save</button>
+            </div>
+
+        </div>
+    </div>
+</div>
