@@ -13,7 +13,7 @@
             "env": {
                 "NODE_ENV": "dev"
             },
-            "program": "${workspaceRoot}/backend/bin/www",
+            "program": "${workspaceRoot}/member/bin/www",
             "cwd": "${workspaceRoot}"
         } 
     ]

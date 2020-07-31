@@ -64,7 +64,7 @@ function update(id, detailsToUpdate, callback) {
 function remove(id, callback) {
     var db = mongodb.getDb();
     var coll = db.collection(this.getCollectionName());
-    coll.remove({ _id: mongodb.ObjectID(id) }, function (err, result) {
+    coll.deleteOne({ _id: mongodb.ObjectID(id) }, function (err, result) {
         if (!err) {
             callback(null, result);
         } else {
