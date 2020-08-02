@@ -11,7 +11,8 @@ export class MembersComponent implements OnInit {
 
   public members: Member[];
   public member: Member;
-  showModal: boolean;
+  public showAddModal: boolean;
+  public showEditModal: boolean;
   constructor(private memberService: MemberService) { }
 
   ngOnInit(): void {
@@ -45,7 +46,7 @@ export class MembersComponent implements OnInit {
         alert("Couldn't create a member.");
       }
     )
-    this.showModal = false;
+    this.cancelModel();
   }
 
   deleteMember(id: string) {
@@ -60,8 +61,8 @@ export class MembersComponent implements OnInit {
     )
   }
 
-  updateMember(member: Member) {
-    this.memberService.update(member, member._id).subscribe(
+  updateMember() {
+    this.memberService.update(this.member, this.member._id).subscribe(
       (response) => {
         this.getAllMembers();
       },
@@ -70,11 +71,25 @@ export class MembersComponent implements OnInit {
         alert("Couldn't update a member.");
       }
     )
+    this.cancelModel();
   }
 
-  openModel(showModal: boolean) {
+  openAddModel(showAddModal: boolean) {
     this.member = new Member();
-    this.showModal = showModal;
+    this.showAddModal = showAddModal;
+    this.showEditModal = !this.showAddModal;
+  }
+
+  openEditModel(showEditModal: boolean, member: Member) {
+    this.member = member;
+    this.showEditModal = showEditModal;
+    this.showAddModal = !this.showEditModal;
+  }
+
+  cancelModel(){
+    this.member = new Member();
+    this.showAddModal = false;
+    this.showEditModal = false;
   }
 
 }

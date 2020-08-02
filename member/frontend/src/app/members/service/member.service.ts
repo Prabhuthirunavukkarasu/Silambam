@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Member } from 'src/app/models/memberModel';
 
 @Injectable()
 export class MemberService {
@@ -20,7 +21,7 @@ export class MemberService {
     return this.http.post(this.routerPath, member);
   }
 
-  update = (member: any,id: string): any => {
+  update = (member: Member,id: string): any => {
     delete member._id;
     return this.http.put(this.routerPath + id, member);
   }
