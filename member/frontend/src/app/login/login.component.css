@@ -121,7 +121,10 @@ form {
   /* Add padding to containers */
   .container {
     padding: 16px;
+    background-image: url("https://www.timeofsports.com/tos-webapp/backend/web/uploads//1552637409silambam-tos.jpg");
+    background-color: #cccccc;
   }
+  
   
   /* The "Forgot password" text */
   span.psw {

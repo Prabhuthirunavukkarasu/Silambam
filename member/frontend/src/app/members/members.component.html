@@ -9,7 +9,10 @@
                 <a class="nav-link" data-toggle="modal" (click)="openAddModel(true)">Add New Member</a>
             </li>
         </ul>
-        <span class="ml-auto navbar-text" routerLink="/login">Log out</span>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" name="searchText" [(ngModel)]="searchText" placeholder="Search name">
+        </form>
+        <span class="ml-auto navbar-text" routerLink="/login">Log out <i class="fas fa-sign-out-alt"></i></span>
     </div>
 </nav>
 <div class="table-responsive-md">
@@ -26,7 +29,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let member of members; index as i">
+            <tr>
+                <th>S.NO</th>
+                <th>Name</th>
+                <th>Father Name</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr *ngFor="let member of members | filter : searchText; index as i">
                 <td>{{i + 1}}</td>
                 <td>{{member.name}}</td>
                 <td>{{member.fatherName}}</td>

@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MembersComponent } from './members/members.component';
 import { LoginComponent } from './login/login.component';
+import { FilterPipe } from './shared/FilterPipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     MembersComponent,
-    LoginComponent
+    LoginComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

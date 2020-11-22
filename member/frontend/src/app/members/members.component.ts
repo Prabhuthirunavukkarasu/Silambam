@@ -11,6 +11,7 @@ export class MembersComponent implements OnInit {
 
   public members: Member[];
   public member: Member;
+  public searchText: string;
   public showAddModal: boolean;
   public showEditModal: boolean;
   constructor(private memberService: MemberService) { }
